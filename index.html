@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhaskar K R - Resume</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #ecf0f1;
+            --text-color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .header-content {
+            flex: 1;
+            padding-top: 38px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        .contact-info a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .education-item,
+        .project-item {
+            margin-bottom: 20px;
+        }
+
+        .location,
+        .date,
+        .gpa,
+        .percentage,
+        .tech-stack {
+            font-style: italic;
+            color: #666;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-image {
+                margin-top: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        .dark-theme {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --background-color: #2c3e50;
+            --text-color: #ecf0f1;
+        }
+
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            z-index: 1000;
+        }
+
+        #theme-toggle:hover {
+            opacity: 0.8;
+        }
+
+        /* Ensuring text visibility in dark mode */
+        .dark-theme a,
+        .dark-theme h1,
+        .dark-theme h2,
+        .dark-theme h3 {
+            color: white;
+        }
+
+        .dark-theme p.location {
+            color: rgb(188, 180, 242);
+        }
+
+        .dark-theme p.date,
+        .dark-theme p.gpa,
+        .dark-theme p.percentage,
+        .dark-theme p.tech-stack,
+        .dark-theme span.c {
+            color: rgb(151, 224, 216);
+        }
+
+        .dark-theme a {
+            color: rgb(146, 146, 255);
+        }
+
+        .dark-theme .contact-info a {
+            color: var(--primary-color);
+        }
+
+            /* Glass effect styles */
+        .update-bar {
+            width: 100%;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            white-space: nowrap;
+            background-color: rgba(255, 255, 255, 0.1); /* Light frosted effect */
+            backdrop-filter: blur(10px); /* Apply blur effect */
+            -webkit-backdrop-filter: blur(30px); /* For Safari */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Optional: adds a border for better visibility */
+        }
+
+        /* Dark mode adjustments */
+        body.dark-theme .update-bar {
+            background-color: rgba(0, 0, 0, 0.3); /* Dark frosted effect */
+        }
+
+        /* Light mode adjustments */
+        body.light-theme .update-bar {
+            background-color: rgba(229, 13, 13, 0.1); /* Light frosted effect */
+        }
+
+        .update-bar p {
+            display: inline-block;
+            padding: 10px 0;
+            animation: scroll-text 20s linear infinite;
+            font-size: 0.9em;
+            color: var(--primary-color); /* Color in light mode */
+            white-space: nowrap;
+            transform: translateX(100%); /* Start off-screen on the right */
+        }
+
+        /* Scrolling animation */
+        @keyframes scroll-text {
+            from {
+                transform: translateX(100%); /* Start completely off-screen on the right */
+            }
+            to {
+                transform: translateX(-100%); /* Move completely off-screen on the left */
+            }
+        }
+
+
+        /* Dark mode adjustments */
+        /* body.dark-theme .update-bar {
+            background-color: var(--primary-color);  
+        } */
+
+        body.light-theme .update-bar {
+            background-color: blue; /* Corrected: no quotes needed */
+        }
+
+        body.dark-theme .update-bar p {
+            color: var(--text-color); /* Text color in dark mode */
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 2px solid var(--primary-color);
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .tech-stack {
+            font-style: italic;
+        }
+
+        .tech-stack span {
+            font-weight: bold;
+            color: var(--secondary-color);
+            cursor: help;
+        }
+
+        .update-info {
+            font-size: 2.2em;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="update-bar">
+        <p>Last updated: <span id="last-updated"></span></p>
+    </div>
+
+    <div class="container">
+        <button id="theme-toggle" aria-label="Toggle dark mode">🌓</button>
+
+        <header>
+            <div class="header-content">
+                <h1>Bhaskar K R</h1>
+                <div class="contact-info">
+                    <p>bhask2003@gmail.com</p>
+                    <p><a href="https://www.linkedin.com/in/bhaskar-kr-215532242/">linkedin.com/in/bhaskar-kr-215532242/</a></p>
+                    <p><a href="https://github.com/bhaski2003">github.com/bhaski2003</a></p>
+                </div>
+            </div>
+            <img src="bhaski.jpg" alt="Bhaskar K R" class="profile-image">
+        </header>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>PES University</h3>
+                <p class="location">Bengaluru, Karnataka</p>
+                <p>Bachelor of Technology in Computer Science and Engineering</p>
+                <p class="date">2021 - 2025</p>
+                <strong><p class="gpa">GPA: 7.83</p></strong>
+            </div>
+            <div class="education-item">
+                <h3>Ashok Composite PU College</h3>
+                <p class="location">Jalahalli, Bengaluru</p>
+                <p>Pre-University</p>
+                <p class="date">2019 - 2021</p>
+                <strong><p class="percentage">Percentage: 92.67%</p></strong> 
+            </div>
+            <div class="education-item">
+                <h3>BGS English School</h3>
+                <p class="location">Agalagurki, Chikkaballapura</p>
+                <p>High-School</p>
+                <p class="date">2017 - 2019</p>
+                <strong><p class="percentage">Percentage: 89.44%</p></strong> 
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project-item">
+                <h3>MeghaDoot Vault</h3>
+                <p class="tech-stack">Next.js, Clerk, ShadCN, Firebase</p>
+                <p class="date">Dec 2022 -- Jan 2023</p>
+                <p><a href="https://bhaski.site">Project Link</a></p>
+                <ul>
+                    <li>Built an All-in-one Cloud Storage Platform SaaS.</li>
+                    <li>Implemented Next.js for server side-rendering and optimization, improving load times by 20% and enhancing SEO performance by 15%.</li>
+                    <li>Designed and styled user interface using Figma and Tailwind CSS, enhancing user experience.</li>
+                    <li>Integrated FireBase for backend operations and user authentication with Clerk, supporting secure access for over 200 users.</li>
+                    <li>Enabled full CRUD operations with drag-and-drop functionality, supporting efficient file management.</li>
+                    <li>Developed a dark/light mode for a customizable UI/UX.</li>
+                </ul>
+            </div>
+            <div class="project-item">
+                <h3>Root-Of-Resources</h3>
+                <p class="date">May 2018 -- May 2020</p>
+                <p><a href="https://root-of-resources-for-pessites.w3spaces.com/">Project Link</a></p>
+                <ul>
+                    <li>Developed and deployed a website assisting over 200 university students with coursework resources.</li>
+                    <li>Curated comprehensive resources for every semester's coursework, reducing search time by 50%.</li>
+                </ul>
+            </div>
+            <div class="project-item">
+                <h3>Serenity Wellness Centre</h3>
+                <p class="date">Mar 2023 -- May 2023</p>
+                <p><a href="https://serenity-wellness-centre.example.com">Project Link</a></p>
+                <ul>
+                    <li>Designed a prototype for an Android app tailored for Serenity Wellness Centre.</li>
+                    <li>Focused on user-friendly navigation and visual appeal, increasing user satisfaction by 40%.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <ul>
+                <li><strong>Languages:</strong> Java, Python, C/C++, SQL, JavaScript</li>
+                <li><strong>Frontend Development:</strong> HTML, CSS, React, Next.js</li>
+                <li><strong>Design:</strong> Tailwind CSS, ShadCN, Figma, Canva, Photoshop, Bootstrap</li>
+                <li><strong>Backend Development:</strong> AJAX, Express.js, PHP</li>
+                <li><strong>DevOps Technologies:</strong> Docker, Jenkins, Kubernetes, AWS Services, Linux, Github</li>
+                <li><strong>Hosting and Development:</strong> Vercel, Netlify, Cloudflare</li>
+                <li><strong>Databases:</strong> MySQL, MongoDB, Firebase</li>
+            </ul>
+        </section>
+
+        <section id="responsibilities">
+            <h2>Positions of Responsibility</h2>
+            <ul>
+                <li><strong>Design Crew</strong> at <em>Shunya: The Math Club</em>; PES UNIVERSITY</li>
+                <li><strong>Design Lead</strong> at <em>Kannada Koota: The Literature Club</em>; PES UNIVERSITY</li>
+                <li><strong>Design Crew</strong> at <em>Code-Chef: Coding Club</em> Chapter PES UNIVERSITY</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer id="last-updated-footer">
+        <p>Designed and developed by Bhaskar K R</p> 
+        <p class="tech-stack">Built with <span title="HyperText Markup Language" class="c">HTML</span>, <span class="c" title="Cascading Style Sheets">CSS</span>, and a dash of <span class="c" title="JavaScript">JS</span></p>
+        <strong><p class="update-info">Last updated: <span id="last-updated"></span></p></strong>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Set the last updated date in the update bar and footer
+            const lastUpdatedDate = new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            // Update bar
+            const lastUpdatedBar = document.getElementById('last-updated');
+            if (lastUpdatedBar) {
+                lastUpdatedBar.textContent = `Last updated: ${lastUpdatedDate}`;
+            }
+
+            // Footer
+            const lastUpdatedFooter = document.getElementById('last-updated-footer');
+            if (lastUpdatedFooter) {
+                lastUpdatedFooter.textContent = `Last Updated: ${lastUpdatedDate}`;
+            }
+
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-theme');
+                localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+            });
+
+            // Check for saved theme preference or prefer-color-scheme
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                body.classList.add('dark-theme');
+            }
+        });
+    </script>
+</body>
+</html>

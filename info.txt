@@ -1,0 +1,11 @@
+The providers in  the terraform are like the baisc units of the terrform itself
+
+Each provider adds a set of resource types and/or data sources that Terraform can manage.
+
+Every resource type is implemented by a provider; without providers, 
+Terraform can't manage any kind of infrastructure.
+
+In this project we're gonna make use of the AWS Provider , which is given to us by the official docs of the terraform
+
+It says - " Use the Amazon Web Services (AWS) provider to interact with the many resources supported by AWS.
+ You must configure the provider with the proper credentials before you can use it. " 
